@@ -2,15 +2,15 @@ package com.galvanize;
 
 public class Verifier {
 
-    public void verify(final String zipCode) throws Exception {
+    public void verify(final String zipCode) throws InvalidFormatException, NoServiceException {
         if (zipCode.length() > 5) {
-            throw new InvalidFormatException("The zip code you entered was the wrong length.");
+            throw new InvalidFormatException("ERRCODE 21: INPUT_TOO_LONG");
         }
         if (zipCode.length() < 5) {
-            throw new InvalidFormatException("The zip code you entered was the wrong length.");
+            throw new InvalidFormatException("ERRCODE 22: INPUT_TOO_SHORT");
         }
         if (zipCode.matches("^1[\\d]+$")) {
-            throw new NoServiceException("We're sorry, but the zip code you entered is out of our range.");
+            throw new NoServiceException("ERRCODE 27: NO_SERVICE");
         }
     }
 
